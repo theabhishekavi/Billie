@@ -1,0 +1,103 @@
+package com.avi.abhishek.presentation;
+
+import android.location.Location;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
+
+    private GoogleMap mMap;
+    FirebaseUser firebaseUser;
+    DatabaseReference ref;
+    Marker marker;
+
+   LatLng latLng=new LatLng(21.2,34.5);
+
+    double lat,longtitude;
+    double prevLat=21.2,prevLong=34.5;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+        setContentView(R.layout.activity_maps);
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
+    }
+
+
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        retriveLocation();
+    }
+
+
+    public void retriveLocation(){
+        firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
+        ref=FirebaseDatabase.getInstance().getReference();
+        ref.child("Location of "+Global_Class.global_name).child("Latitude").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                lat=dataSnapshot.getValue(Double.class);
+
+                latLng=new LatLng(lat,prevLong);
+                prevLat=lat;
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        ref.child("Location of "+Global_Class.global_name).child("Longitude").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                longtitude=dataSnapshot.getValue(Double.class);
+                latLng=new LatLng(prevLat,longtitude);
+               if (marker!=null){
+                    marker.remove();
+                }
+
+             marker = mMap.addMarker(new MarkerOptions().position(latLng).title(Global_Class.global_name));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+                prevLong=longtitude;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+    }
+}

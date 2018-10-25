@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="#A4C639">
+
+    <Button
+        android:id="@+id/btnBillSplit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="171dp"
+        android:text="Bill Split!"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="45dp" />
+
+    <Button
+        android:id="@+id/btnsignout"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/cardview_light_background"
+        android:text="SIGN OUT"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp" />
+
+    <Button
+        android:id="@+id/btnLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="345dp"
+        android:layout_marginEnd="-87dp"
+        android:layout_marginRight="-87dp"
+        android:layout_toStartOf="@+id/btnsignout"
+        android:layout_toLeftOf="@+id/btnsignout"
+        android:text="Realtime Location"
+        android:textSize="30dp" />
+
+</RelativeLayout>

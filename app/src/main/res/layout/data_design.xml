@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="#a4c639">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/etNametrv"
+            android:textSize="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Name of the Traveller!"
+            android:imeOptions="actionNext"
+            />
+
+        <TextView
+            android:id="@+id/etAmounttrv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Amount Paid till Now!     "
+            android:imeOptions="actionDone"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="82dp"
+        android:hint="Delete" />
+
+
+</LinearLayout>
