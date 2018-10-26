@@ -3,6 +3,7 @@ package com.avi.abhishek.presentation;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+import android.location.LocationManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -27,6 +28,7 @@ public class LocationViewAdapter extends BaseAdapter {
 
 
    private ArrayList<String> details;
+
 
 
     public LocationViewAdapter(ArrayList<String> details) {
@@ -83,6 +85,8 @@ public class LocationViewAdapter extends BaseAdapter {
         btnDisable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Intent i=new Intent(parent.getContext(),TrackingService.class);
+
 
 
 

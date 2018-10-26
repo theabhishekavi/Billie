@@ -48,6 +48,7 @@ public class Trip_Slide extends AppCompatActivity {
             startTrackerService();
         } else {
             Toast.makeText(this, "Please enable location services to allow GPS tracking", Toast.LENGTH_SHORT).show();
+            finish();
             }
     }
 
@@ -61,6 +62,7 @@ public class Trip_Slide extends AppCompatActivity {
 
           i.putExtra("tracker",trackerName);
         startService(i);
+        finish();
 
 
     }
