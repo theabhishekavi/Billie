@@ -28,6 +28,10 @@ public class LocationViewAdapter extends BaseAdapter {
 
 
    private ArrayList<String> details;
+    TextView textView;
+    DatabaseReference ref;
+    FirebaseUser firebaseUser;
+    String Username="";
 
 
 
@@ -52,42 +56,60 @@ public class LocationViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, final View convertView, final ViewGroup parent) {
+    public View getView(final int position, final View convertView, final ViewGroup parent) {
 
 
 
         LayoutInflater li= LayoutInflater.from(parent.getContext());
 
-        View inflatedView;
+        final View inflatedView;
         if (convertView==null){
         inflatedView=li.inflate(R.layout.location_design,parent,false);}
         else{
             inflatedView=convertView;}
 
-        String currentDetail=getItem(position);
+        final String currentDetail=getItem(position);
+        ref=FirebaseDatabase.getInstance().getReference();
+        firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
+        Username=firebaseUser.getUid();
 
-        TextView textView;
+
         Button btnShow,btnDisable;
         textView=inflatedView.findViewById(R.id.textView);
         btnShow=inflatedView.findViewById(R.id.btnShow);
         btnDisable=inflatedView.findViewById(R.id.btnDisable);
+
+
         textView.setText(currentDetail);
         notifyDataSetChanged();
 
        btnShow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+               Global_Class.global_name=currentDetail;
+               Log.e("yummy",Global_Class.global_name);
                 Intent intent=new Intent(parent.getContext(),MapsActivity.class);
                 parent.getContext().startActivity(intent);
+
                 }
         });
 
         btnDisable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Global_Class.global_name=currentDetail;
+              /*  LocationManager lm = (LocationManager)parent.getContext().getSystemService(parent.getContext().LOCATION_SERVICE);
+                if(lm!=null && lm.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+                    lm.removeTestProvider(LocationManager.GPS_PROVIDER);}
+*/
+//              if(((LocationManager)parent.getContext().getSystemService(parent.getContext().LOCATION_SERVICE)).isProviderEnabled(LocationManager.GPS_PROVIDER))
+//                  ((LocationManager)parent.getContext().getSystemService(parent.getContext().LOCATION_SERVICE)).removeTestProvider(LocationManager.GPS_PROVIDER);
 //                Intent i=new Intent(parent.getContext(),TrackingService.class);
-
-
+//                parent.getContext().stopService(i);
+                details.remove(position);
+                notifyDataSetChanged();
+                ref.child("Location of "+Username+" "+Global_Class.global_name).removeValue();
+                ref.child("Track " + Username +" ").child(currentDetail).removeValue();
 
 
 

@@ -1,6 +1,7 @@
 package com.avi.abhishek.presentation;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -15,6 +16,8 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -27,15 +30,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class TrackingService extends Service  {
-    String trackerName="";
+    String Username="";
     FirebaseUser firebaseUser;
 
 
-    private static final String Tag = TrackingService.class.getSimpleName();
+
+   // private static final String Tag = TrackingService.class.getSimpleName();
     @Override
     public IBinder onBind(Intent intent) {
-        trackerName=intent.getStringExtra("tracker");
-        Log.e("nameee",trackerName);
+//        trackerName=intent.getStringExtra("tracker");
+//        Log.e("nameee",trackerName);
         return null;
     }
 
@@ -75,9 +79,12 @@ public class TrackingService extends Service  {
 
     public void loginfirebase(){
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        Username=firebaseUser.getUid();
         if(firebaseUser!=null)
             requestLocationUpdates();
         }
+        public static Activity myActivity;
+    ImageButton importedButton=(ImageButton) TrackingService.myActivity.findViewById(R.id.imageButton);
 
 
 
@@ -93,11 +100,12 @@ public class TrackingService extends Service  {
                 public void onLocationResult(LocationResult locationResult) {
                     DatabaseReference ref=FirebaseDatabase.getInstance().getReference();
                      Location location= locationResult.getLastLocation();
-                     String s=Global_Class.global_name;
+                     //String s=Global_Class.global_name;
                      if(location!=null){
-                         ref.child("Location of "+Global_Class.global_name).child("Latitude").setValue(location.getLatitude());
-                         ref.child("Location of "+Global_Class.global_name).child("Longitude").setValue(location.getLongitude());
+                         ref.child("Location of "+Username+" "+Global_Class.global_name).child("Latitude").setValue(location.getLatitude());
+                         ref.child("Location of "+Username+" "+Global_Class.global_name).child("Longitude").setValue(location.getLongitude());
                      }
+                     importedButton.setEnabled(true);
                 }
             },null);
         }

@@ -28,6 +28,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private GoogleMap mMap;
     FirebaseUser firebaseUser;
+    String Username="";
     DatabaseReference ref;
     Marker marker;
 
@@ -60,15 +61,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     public void retriveLocation(){
         firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
+        Username=firebaseUser.getUid();
         ref=FirebaseDatabase.getInstance().getReference();
-        ref.child("Location of "+Global_Class.global_name).child("Latitude").addValueEventListener(new ValueEventListener() {
+        ref.child("Location of "+Username+" "+Global_Class.global_name).child("Latitude").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                lat=dataSnapshot.getValue(Double.class);
+                if(dataSnapshot.getValue(Double.class)!=null) {
+                    lat = dataSnapshot.getValue(Double.class);
 
-                latLng=new LatLng(lat,prevLong);
-                prevLat=lat;
-
+                    latLng = new LatLng(lat, prevLong);
+                    prevLat = lat;
+                }
             }
 
             @Override
@@ -76,19 +79,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             }
         });
-        ref.child("Location of "+Global_Class.global_name).child("Longitude").addValueEventListener(new ValueEventListener() {
+        ref.child("Location of "+Username+" "+Global_Class.global_name).child("Longitude").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.getValue(Double.class) != null) {
 
-                longtitude=dataSnapshot.getValue(Double.class);
-                latLng=new LatLng(prevLat,longtitude);
-               if (marker!=null){
-                    marker.remove();
+                    longtitude = dataSnapshot.getValue(Double.class);
+                    latLng = new LatLng(prevLat, longtitude);
+                    if (marker != null) {
+                        marker.remove();
+                    }
+
+                    marker = mMap.addMarker(new MarkerOptions().position(latLng).title(Global_Class.global_name));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng,16.0f));
+                    prevLong = longtitude;
                 }
-
-             marker = mMap.addMarker(new MarkerOptions().position(latLng).title(Global_Class.global_name));
-                mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-                prevLong=longtitude;
             }
 
             @Override

@@ -1,4 +1,4 @@
-package com.avi.abhishek.presentation;
+/*package com.avi.abhishek.presentation;
 
 import android.Manifest;
 import android.content.ComponentName;
@@ -67,3 +67,4 @@ public class Trip_Slide extends AppCompatActivity {
 
     }
 }
+*/

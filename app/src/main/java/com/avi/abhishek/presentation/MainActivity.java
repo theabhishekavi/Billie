@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
             //user logged out
             startActivityForResult(
                     AuthUI.getInstance()
+//                            Setlogo setTheme
+//                            set terms and privacy policy urls recommended
                             .createSignInIntentBuilder()
                             .setIsSmartLockEnabled(false)
                             .setAvailableProviders(Arrays.asList(
@@ -116,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     Toast.makeText(MainActivity.this,"User signed out",Toast.LENGTH_SHORT).show();
+//                                    Resign it pass startActivityForResult
                                     finish();
                                 }
                             });
