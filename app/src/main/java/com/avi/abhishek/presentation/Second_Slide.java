@@ -37,31 +37,29 @@ public class Second_Slide extends AppCompatActivity {
    FirebaseUser firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
     String tripname="";
     String Username="";
-
+    String dbname, dbamount;
     EditText etName, etAmount;
-    int number;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_slide);
 
-        Username = firebaseUser.getDisplayName();
+        Username = firebaseUser.getUid();
 
-        if(Username == null){
-            Username=firebaseUser.getPhoneNumber();
-
-        }
+//        if(Username == null){
+//            Username=firebaseUser.getPhoneNumber();
+//
+//        }
         final EditText etName, etAmount;
 
         etName = findViewById(R.id.etName);
         etAmount = findViewById(R.id.etAmount);
 
        if(getIntent()!=null){
-
            tripname = (getIntent().getStringExtra("name"));
-           String s = (getIntent().getStringExtra("keyy"));
-        number=Integer.valueOf(s);
-       }
+           Global_Class.billTripname=tripname;
+        }
 
 
 
@@ -76,22 +74,21 @@ public class Second_Slide extends AppCompatActivity {
           btnAdd.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
-                  String name, amount;
-                  name = etName.getText().toString();
-                  amount = etAmount.getText().toString();
-                  etName.setText("");
-                  etAmount.setText("");
-                  Details detail = new Details(name, Integer.valueOf(amount));
-                  if (Username != null)
-                      dbref.child("Bill "+Username + " " + tripname).push().setValue(detail);
+                      dbname = etName.getText().toString();
+                      dbamount = etAmount.getText().toString();
+                      Details detail = new Details(dbname, Integer.valueOf(dbamount));
 
+                      dbref.child("Bill Details "+Username + " "+Global_Class.billTripname).child(""+etName.getText().toString()+""+etAmount.getText().toString())/*.child(etName.getText().toString()+" "+ etAmount.getText().toString())*/
+                              .setValue(detail);
 
-              }
+                              }
           });
 
-          dbref.child("Bill "+Username + " " + tripname).addChildEventListener(new ChildEventListener() {
+        dbref.child("Bill Details "+Username + " "+Global_Class.billTripname).child(""+etName.getText().toString()+""+etAmount.getText().toString())/*.child(etName.getText().toString()+" "+ etAmount.getText().toString())*/
+                .addChildEventListener(new ChildEventListener() {
               @Override
               public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+//                  Log.e("haramiii","chutiya"+etName.getText().toString());
                   Details data = dataSnapshot.getValue(Details.class);
                   details.add(data);
                   detailsAdapter.notifyDataSetChanged();
@@ -100,10 +97,9 @@ public class Second_Slide extends AppCompatActivity {
                   Log.e("tag111", "name is " + name);
                   x.add(name);
                   y.add(i);
+                  etName.setText("");
+                  etAmount.setText("");
 
-               /*  x.add(data.getName());
-                y.add(Integer.valueOf(data.getMoney().toString()));
-*/
               }
 
               @Override

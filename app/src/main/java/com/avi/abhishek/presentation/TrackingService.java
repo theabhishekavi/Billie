@@ -32,10 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class TrackingService extends Service  {
     String Username="";
     FirebaseUser firebaseUser;
-
-
-
-   // private static final String Tag = TrackingService.class.getSimpleName();
+    // private static final String Tag = TrackingService.class.getSimpleName();
     @Override
     public IBinder onBind(Intent intent) {
 //        trackerName=intent.getStringExtra("tracker");
@@ -68,7 +65,7 @@ public class TrackingService extends Service  {
     }
 
 
-    protected BroadcastReceiver broadcastReceiver= new BroadcastReceiver() {
+    protected BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
              unregisterReceiver(broadcastReceiver);
@@ -83,6 +80,8 @@ public class TrackingService extends Service  {
         if(firebaseUser!=null)
             requestLocationUpdates();
         }
+
+
         public static Activity myActivity;
     ImageButton importedButton=(ImageButton) TrackingService.myActivity.findViewById(R.id.imageButton);
 

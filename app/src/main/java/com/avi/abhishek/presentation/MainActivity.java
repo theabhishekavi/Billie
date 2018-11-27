@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
                                     new AuthUI.IdpConfig.EmailBuilder().build(),
                                     new AuthUI.IdpConfig.PhoneBuilder().build(),
                                     new AuthUI.IdpConfig.AnonymousBuilder().build()))
+                            .setLogo(R.drawable.images)
+                            .setTheme(R.style.AppTheme2)
                             .build(),
                     RC_SIGN_IN);
 
@@ -83,13 +85,15 @@ public class MainActivity extends AppCompatActivity {
                 // Sign in failed
                 if (response == null) {
                     // User pressed back button
-
                     finish();
 
                     return;
                 }
 
                 if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
+
+                    Toast.makeText(MainActivity.this,"Internet disabled",Toast.LENGTH_SHORT).show();
+                    finish();
 
                     return;
                 }

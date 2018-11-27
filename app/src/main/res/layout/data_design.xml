@@ -13,7 +13,7 @@
 
         <TextView
             android:id="@+id/etNametrv"
-            android:textSize="20dp"
+            android:textSize="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Name of the Traveller!"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:hint="Amount Paid till Now!     "
             android:imeOptions="actionDone"
-            android:textSize="20dp" />
+            android:textSize="30dp" />
     </LinearLayout>
 
 

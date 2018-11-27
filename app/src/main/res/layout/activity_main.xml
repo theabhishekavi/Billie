@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="#A4C639">
+    android:background="@drawable/images">
 
     <Button
         android:id="@+id/btnBillSplit"
@@ -43,5 +43,6 @@
         android:layout_toLeftOf="@+id/btnsignout"
         android:text="Realtime Location"
         android:textSize="30dp" />
+
 
 </RelativeLayout>
