@@ -42,14 +42,11 @@ public class Third_Slide extends AppCompatActivity {
             }
         }
 
-        for (int i=0;i<name.size();i++){
-            Log.e("chutiya"+String.valueOf(i),name.get(i)+String.valueOf(money.get(i)));
-        }
+
 
         ExpandableTextView textView = (ExpandableTextView)findViewById(R.id.expand_text_view);
 
 
-        //    double[] arr=new double[5];
         size = money.size();
         double sum = 0.0, equal = 0.0;
         int i = 0, j = 0;
