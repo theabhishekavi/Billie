@@ -1,22 +1,15 @@
-package com.avi.abhishek.presentation;
+package com.avi.abhishek.Billie;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.Notification;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.location.LocationListener;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -45,24 +38,24 @@ public class TrackingService extends Service  {
     @Override
     public void onCreate() {
         super.onCreate();
-        buildNotification();
+//        buildNotification();
         loginfirebase();
     }
 
 
 
-    private void buildNotification() {
-        String stop="stop";
-        registerReceiver(broadcastReceiver,new IntentFilter(stop));
-        PendingIntent broadcastIntent=PendingIntent.getBroadcast(this,0,new Intent(stop),PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Notification.Builder builder=new Notification.Builder(this)
-                .setContentTitle(getString(R.string.app_name))
-                .setContentText("Tracking is currently Enabled")
-                .setSmallIcon(R.drawable.ic_launcher_background);
-           startForeground(1,builder.build());
-
-    }
+//    private void buildNotification() {
+//        String stop="stop";
+//        registerReceiver(broadcastReceiver,new IntentFilter(stop));
+//        PendingIntent broadcastIntent=PendingIntent.getBroadcast(this,0,new Intent(stop),PendingIntent.FLAG_UPDATE_CURRENT);
+//
+//        Notification.Builder builder=new Notification.Builder(this)
+//                .setContentTitle(getString(R.string.app_name))
+//                .setContentText("Tracking is currently Enabled")
+//                .setSmallIcon(R.drawable.ic_launcher_background);
+//           startForeground(1,builder.build());
+//
+//    }
 
 
     protected BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {

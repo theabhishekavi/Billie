@@ -1,26 +1,14 @@
-package com.avi.abhishek.presentation;
+package com.avi.abhishek.Billie;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.Selection;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Switch;
-import android.widget.TextView;
 
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.ErrorCodes;
-import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -30,7 +18,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class First_Slide extends AppCompatActivity {
 
@@ -56,6 +43,7 @@ public class First_Slide extends AppCompatActivity {
         lvGroupname=findViewById(R.id.lvGroupname);
         final GroupNameAdapter groupNameAdapter=new GroupNameAdapter(arrayname);
         lvGroupname.setAdapter(groupNameAdapter);
+        groupNameAdapter.notifyDataSetChanged();
 
         btnDone.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +53,7 @@ public class First_Slide extends AppCompatActivity {
                 name.setText("");
 
 //                arrayname.add(s);
-//                groupNameAdapter.notifyDataSetChanged();
+                groupNameAdapter.notifyDataSetChanged();
                 }
         });
 
@@ -98,20 +86,6 @@ public class First_Slide extends AppCompatActivity {
             }
         });
 
-//        number = findViewById(R.id.etNumber);
-//        switch1 = findViewById(R.id.switch1);
-//
-//        switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (isChecked == true) {
-//                    Intent i = new Intent(First_Slide.this, Second_Slide.class);
-//                    i.putExtra("keyy", number.getText().toString());
-//                    i.putExtra("name",name.getText().toString());
-//                    startActivity(i);
-//                }
-//            }
-//        });
     }
 }
 

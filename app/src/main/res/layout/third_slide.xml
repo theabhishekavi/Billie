@@ -6,7 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Third_Slide"
     android:layout_gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/bill_last_slide">
 
 
     <TextView

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.avi.abhishek.presentation">
+    package="com.avi.abhishek.Billie">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,20 +12,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="com.avi.abhishek.Billie.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".First_Slide" />
-        <activity android:name=".Second_Slide" />
-        <activity android:name=".Third_Slide" />
-        <activity android:name=".Trip_Slide" />
-        <activity android:name=".Location_View" />
+        <activity android:name="com.avi.abhishek.Billie.First_Slide" />
+        <activity android:name="com.avi.abhishek.Billie.Second_Slide" />
+        <activity android:name="com.avi.abhishek.Billie.Third_Slide" />
+        <!--<activity android:name=".Trip_Slide" />-->
+        <activity android:name="com.avi.abhishek.Billie.Location_View" />
 
-        <service android:name=".TrackingService" />
+        <service android:name="com.avi.abhishek.Billie.TrackingService" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -39,7 +39,7 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name="com.avi.abhishek.Billie.MapsActivity"
             android:label="@string/title_activity_maps"></activity>
     </application>
 

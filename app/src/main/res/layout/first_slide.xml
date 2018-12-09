@@ -48,31 +48,4 @@
 
 
 
-
-    <!--<EditText-->
-        <!--android:id="@+id/etNumber"-->
-        <!--android:singleLine="true"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:layout_marginBottom="222dp"-->
-        <!--android:hint="Enter the number of person going"-->
-        <!--/>-->
-
-    <!--<Switch-->
-        <!--android:id="@+id/switch1"-->
-        <!--android:layout_width="83dp"-->
-        <!--android:layout_height="46dp"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_marginBottom="52dp"-->
-        <!--android:layout_marginEnd="36dp"-->
-        <!--android:layout_marginRight="36dp"-->
-        <!--android:text="  Trip "-->
-        <!--android:textAllCaps="true"-->
-        <!--android:textStyle="italic" />-->
-
-
 </LinearLayout>

@@ -1,4 +1,4 @@
-package com.avi.abhishek.presentation;
+package com.avi.abhishek.Billie;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,12 +7,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,14 +22,15 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-import static com.avi.abhishek.presentation.R.id.etName;
-
 public class Second_Slide extends AppCompatActivity {
 
     ArrayList<Details> details = new ArrayList<>();
 
     ArrayList<String> x=new ArrayList<>();
     ArrayList<Integer> y=new ArrayList<>();
+    Details detail;
+    Details data;
+
 
    DatabaseReference dbref= FirebaseDatabase.getInstance().getReference();
    FirebaseUser firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
@@ -47,10 +46,6 @@ public class Second_Slide extends AppCompatActivity {
 
         Username = firebaseUser.getUid();
 
-//        if(Username == null){
-//            Username=firebaseUser.getPhoneNumber();
-//
-//        }
         final EditText etName, etAmount;
 
         etName = findViewById(R.id.etName);
@@ -71,49 +66,108 @@ public class Second_Slide extends AppCompatActivity {
 
       final Button btnAdd = findViewById(R.id.btnAdd);
 
+      etAmount.addTextChangedListener(new TextWatcher() {
+          @Override
+          public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+          }
+
+          @Override
+          public void onTextChanged(CharSequence s, int start, int before, int count) {
+              String st=etAmount.getText().toString().trim();
+              for (int i=0;i<st.length();i++){
+                  int x=(int)st.charAt(i);
+                  if(x>=48&&x<=57){
+                      btnAdd.setEnabled(true);
+                  }
+                  else {
+                      btnAdd.setEnabled(false);
+                      break;
+                      }
+
+              }
+          }
+
+          @Override
+          public void afterTextChanged(Editable s) {
+
+              }
+      });
+
+
+
+
           btnAdd.setOnClickListener(new View.OnClickListener() {
               @Override
               public void onClick(View v) {
                       dbname = etName.getText().toString();
                       dbamount = etAmount.getText().toString();
-                      Details detail = new Details(dbname, Integer.valueOf(dbamount));
 
-                      dbref.child("Bill Details "+Username + " "+Global_Class.billTripname).child(""+etName.getText().toString()+""+etAmount.getText().toString())/*.child(etName.getText().toString()+" "+ etAmount.getText().toString())*/
+                  detail = new Details(dbname,Integer.valueOf(dbamount));
+
+                  dbref.child("Bill Details "+Username + " "+Global_Class.billTripname).child(""+etName.getText().toString()+""+etAmount.getText().toString()).push()
                               .setValue(detail);
 
                               }
           });
 
-        dbref.child("Bill Details "+Username + " "+Global_Class.billTripname).child(""+etName.getText().toString()+""+etAmount.getText().toString())/*.child(etName.getText().toString()+" "+ etAmount.getText().toString())*/
+
+
+
+
+        dbref.child("Bill Details "+Username + " "+Global_Class.billTripname).child(""+etName.getText().toString()+""+etAmount.getText().toString())
                 .addChildEventListener(new ChildEventListener() {
               @Override
               public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-//                  Log.e("haramiii","chutiya"+etName.getText().toString());
-                  Details data = dataSnapshot.getValue(Details.class);
-                  details.add(data);
-                  detailsAdapter.notifyDataSetChanged();
-                  String name = data.getName();
-                  int i = data.getMoney();
-                  Log.e("tag111", "name is " + name);
-                  x.add(name);
-                  y.add(i);
-                  etName.setText("");
-                  etAmount.setText("");
+                  for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                       data = new Details(ds.child("name").getValue(String.class), ds.child("money").getValue(Integer.class));}
+//                  Details data = dataSnapshot.getValue(Details.class);
+                      details.add(data);
+                     detailsAdapter.notifyDataSetChanged();
+                      String name = data.getName();
+                      int i = data.getMoney();
+                      x.add(name);
+                      y.add(i);
+                      etName.setText("");
+                      etAmount.setText("");
+
 
               }
 
               @Override
               public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                  for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                       data = new Details(ds.child("name").getValue(String.class), ds.child("money").getValue(Integer.class));}
+//                  Details data = dataSnapshot.getValue(Details.class);
+                      details.add(data);
+                    detailsAdapter.notifyDataSetChanged();
+                      String name = data.getName();
+                      int i = data.getMoney();
+                      x.add(name);
+                      y.add(i);
+                      etName.setText("");
+                      etAmount.setText("");
+
 
               }
 
               @Override
               public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                  for (DataSnapshot ds : dataSnapshot.getChildren()) {
+//                   data=dataSnapshot.getValue(Details.class);
+                      data = new Details(ds.child("name").getValue(String.class), ds.child("money").getValue(Integer.class));}
+                  String name=data.getName();
+                  int i=data.getMoney();
+
+                  x.remove(name);
+                  y.remove(Integer.valueOf(i));
+
 
               }
 
               @Override
               public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
 
               }
 
@@ -121,6 +175,7 @@ public class Second_Slide extends AppCompatActivity {
               public void onCancelled(@NonNull DatabaseError databaseError) {
 
               }
+
           });
 
 

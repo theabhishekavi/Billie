@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/menu_about"
+        android:title="About"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="3">
+    </item>
+    <item android:id="@+id/menu_new_features"
+        android:title="Upcoming features"
+        android:orderInCategory="2">
+
+    </item>
+    <item android:id="@+id/menu_sign"
+        android:title="Signout"
+        android:orderInCategory="1"
+        >
+
+    </item>
+
+
+</menu>

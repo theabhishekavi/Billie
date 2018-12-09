@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".Second_Slide"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/billhome">
 
 
 

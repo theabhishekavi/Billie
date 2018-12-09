@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    android:background="#a4c639">
+    >
 
     <LinearLayout
         android:layout_width="0dp"
@@ -14,9 +14,11 @@
         <TextView
             android:id="@+id/etNametrv"
             android:textSize="30dp"
+            android:textColor="#0007cc"
+            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Name of the Traveller!"
+            android:hint="Name of Traveller!"
             android:imeOptions="actionNext"
             />
 
@@ -26,7 +28,9 @@
             android:layout_height="wrap_content"
             android:hint="Amount Paid till Now!     "
             android:imeOptions="actionDone"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:textColor="#0007cc"
+            android:textStyle="bold"/>
     </LinearLayout>
 
 

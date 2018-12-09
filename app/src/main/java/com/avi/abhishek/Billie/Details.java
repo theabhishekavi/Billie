@@ -1,4 +1,4 @@
-package com.avi.abhishek.presentation;
+package com.avi.abhishek.Billie;
 
 public class Details {
 
@@ -6,7 +6,7 @@ public class Details {
 
     }
 
-    public Details(String name, int money) {
+    public Details(String name,int money) {
         this.name = name;
         this.money = money;
     }

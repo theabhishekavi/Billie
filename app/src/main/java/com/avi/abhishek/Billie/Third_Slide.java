@@ -1,13 +1,9 @@
-package com.avi.abhishek.presentation;
+package com.avi.abhishek.Billie;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
@@ -19,6 +15,7 @@ public class Third_Slide extends AppCompatActivity {
     ArrayList<String> name;
     ArrayList<Integer> money;
     int size;
+    int x;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,29 +25,37 @@ public class Third_Slide extends AppCompatActivity {
 
             name = getIntent().getStringArrayListExtra("key");
             money = getIntent().getIntegerArrayListExtra("int");
-            size = money.size();
+
+        }
+
+        for (int i=0;i<name.size()-1;i++){
+            for(int j=i+1;j<name.size();j++){
+                if(name.get(i).equalsIgnoreCase(name.get(j)) ){
+                    x = money.get(i)+ money.get(j);
+                    money.set(i,x);
+                   Log.e("yoooooo",String.valueOf(money.get(i))+"  ");
+                    name.remove(j);
+                    money.remove(j);
+                    j--;
+                    }
+
+            }
+        }
+
+        for (int i=0;i<name.size();i++){
+            Log.e("chutiya"+String.valueOf(i),name.get(i)+String.valueOf(money.get(i)));
         }
 
         ExpandableTextView textView = (ExpandableTextView)findViewById(R.id.expand_text_view);
 
 
         //    double[] arr=new double[5];
-
+        size = money.size();
         double sum = 0.0, equal = 0.0;
         int i = 0, j = 0;
-        //  String s0=t1.getText().toString();
-        //  arr[0]=Double.parseDouble(s0);
-        //  String s1=t2.getText().toString();
-        //  arr[1]=Double.parseDouble(s1);
-        //  String s2=t1.getText().toString();
-        //  arr[2]=Double.parseDouble(s2);
-//        String s3=t1.getText().toString();
-//        arr[3]=Double.parseDouble(s3);
-//        String s4=t1.getText().toString();
-//        arr[4]=Double.parseDouble(s4);
 
         for (int k = 0; k < size; k++) {
-//        sum=arr[0]+arr[1]+arr[2]+arr[3]+arr[4];
+
 
             sum = sum + money.get(k);
         }

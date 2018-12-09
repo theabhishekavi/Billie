@@ -1,12 +1,10 @@
-package com.avi.abhishek.presentation;
+package com.avi.abhishek.Billie;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -14,7 +12,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class DetailsAdapter extends BaseAdapter {
@@ -65,7 +62,7 @@ public class DetailsAdapter extends BaseAdapter {
 
 
         etNametrv.setText(currentDetail.getName());
-        String n="Rs."+ String.valueOf(currentDetail.getMoney());
+        String n="Rs."+String.valueOf(currentDetail.getMoney());
 
         etAmounttrv.setText(n);
 

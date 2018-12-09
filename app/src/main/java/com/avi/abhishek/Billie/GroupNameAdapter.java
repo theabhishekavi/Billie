@@ -1,4 +1,4 @@
-package com.avi.abhishek.presentation;
+package com.avi.abhishek.Billie;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -76,6 +76,7 @@ public class GroupNameAdapter extends BaseAdapter {
                 name.remove(position);
                 notifyDataSetChanged();
                 dbref.child(username+" Group_Names").child(CurrentName).removeValue();
+                dbref.child("Bill Details "+username + " "+CurrentName).removeValue();
             }
         });
 
