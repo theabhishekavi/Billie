@@ -58,10 +58,8 @@ public class DetailsAdapter extends BaseAdapter {
         etNametrv=inflatedView.findViewById(R.id.etNametrv);
         etAmounttrv=inflatedView.findViewById(R.id.etAmounttrv);
         Button btnDelete = inflatedView.findViewById(R.id.btnDelete);
-        username=firebaseUser.getUid();
-
-
-        etNametrv.setText(currentDetail.getName());
+       username=firebaseUser.getUid();
+       etNametrv.setText(currentDetail.getName());
         String n="Rs."+String.valueOf(currentDetail.getMoney());
 
         etAmounttrv.setText(n);

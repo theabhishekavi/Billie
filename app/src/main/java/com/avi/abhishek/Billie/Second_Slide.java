@@ -35,7 +35,7 @@ public class Second_Slide extends AppCompatActivity {
    DatabaseReference dbref= FirebaseDatabase.getInstance().getReference();
    FirebaseUser firebaseUser=FirebaseAuth.getInstance().getCurrentUser();
     String tripname="";
-    String Username="";
+    String Username;
     String dbname, dbamount;
     EditText etName, etAmount;
 
@@ -43,8 +43,7 @@ public class Second_Slide extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_slide);
-
-        Username = firebaseUser.getUid();
+        Username=firebaseUser.getUid();
 
         final EditText etName, etAmount;
 
@@ -137,7 +136,7 @@ public class Second_Slide extends AppCompatActivity {
               @Override
               public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                   for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                       data = new Details(ds.child("name").getValue(String.class), ds.child("money").getValue(Integer.class));}
+                       data = new Details(ds.child("name").getValue(String.class),ds.child("money").getValue(Integer.class));}
 //                  Details data = dataSnapshot.getValue(Details.class);
                       details.add(data);
                     detailsAdapter.notifyDataSetChanged();

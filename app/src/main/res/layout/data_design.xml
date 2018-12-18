@@ -18,7 +18,7 @@
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Name of Traveller!"
+            android:hint="Name of Payee!  "
             android:imeOptions="actionNext"
             />
 

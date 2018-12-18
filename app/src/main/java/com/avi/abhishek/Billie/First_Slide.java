@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +24,8 @@ public class First_Slide extends AppCompatActivity {
 
     EditText name;
     ListView lvGroupname;
-    String username="";
+
+    String username;
     Button btnDone;
     ArrayList<String> arrayname=new ArrayList<>();
 
@@ -37,10 +39,17 @@ public class First_Slide extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.first_slide);
         username=firebaseUser.getUid();
+//        username = firebaseUser.getPhoneNumber();
+//        if(firebaseUser.getPhoneNumber()==""){
+//            username=firebaseUser.getEmail().trim();
+//            username=username.replace(".",",");
+//            Log.e("kutta",username+"");
+//        }
 
         name = findViewById(R.id.etTripName);
         btnDone=findViewById(R.id.btnDone);
-        lvGroupname=findViewById(R.id.lvGroupname);
+        lvGroupname=(ListView)findViewById(R.id.lvGroupname);
+
         final GroupNameAdapter groupNameAdapter=new GroupNameAdapter(arrayname);
         lvGroupname.setAdapter(groupNameAdapter);
         groupNameAdapter.notifyDataSetChanged();

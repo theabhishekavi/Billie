@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".First_Slide"
     android:orientation="vertical"
-    android:background="@drawable/split_bill_image">
+    android:background="@drawable/first_slide_opacity">
 
 
     <TextView

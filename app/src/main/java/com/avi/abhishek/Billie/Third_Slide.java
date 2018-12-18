@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.ms.square.android.expandabletextview.ExpandableTextView;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Third_Slide extends AppCompatActivity {
@@ -16,6 +17,8 @@ public class Third_Slide extends AppCompatActivity {
     ArrayList<Integer> money;
     int size;
     int x;
+//    double p=0.0,q=0.0;
+    DecimalFormat df=new DecimalFormat("###.##");
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,13 +45,17 @@ public class Third_Slide extends AppCompatActivity {
             }
         }
 
+        for (int l=0;l<name.size();l++){
+            Log.e("checkkk",name.get(l)+"and amaonut"+String.valueOf(money.get(l)));
+        }
+
 
 
         ExpandableTextView textView = (ExpandableTextView)findViewById(R.id.expand_text_view);
 
 
         size = money.size();
-        double sum = 0.0, equal = 0.0;
+        double sum = 0.0, equal = 0.0,equal1=0.0;
         int i = 0, j = 0;
 
         for (int k = 0; k < size; k++) {
@@ -57,16 +64,19 @@ public class Third_Slide extends AppCompatActivity {
             sum = sum + money.get(k);
         }
         equal = sum / size;
+        equal1=Math.round(equal*100.0)/100.0;
 
-        concat="Per Person has to pay Rs:-"+String.valueOf(equal)+"\n \n";
+        concat="Per Person has to pay Rs:-"+String.valueOf(equal1)+"\n \n";
         double[] rec = new double[size];
         double[] give = new double[size];
         for (i = 0; i < size; i++) {
             if (money.get(i) > equal) {
                 rec[i] = money.get(i) - equal;
+//                rec[i]=Math.round(rec[i]*100.0)*100;
                 give[i] = 0.0;
             } else {
                 give[i] = equal - money.get(i);
+//                give[i]=Math.round(give[i]*100.0)/100.0;
                 rec[i] = 0.0;
             }
         }
@@ -79,17 +89,18 @@ public class Third_Slide extends AppCompatActivity {
                     continue;
                 }
                 if (give[j] < rec[i]) {
-                    s=("\n"+name.get(i) + " will receive Rs." + give[j] + " from " + name.get(j)+"\n");
+//                  p=df.format(give[j]);
+                    s=("\n"+name.get(i) + " will receive Rs." + df.format(give[j]) + " from " + name.get(j)+"\n");
                     concat= String.format("%s%s   ", concat, s);
-
-                   Log.e("Tag", name.get(i) + " will receive Rs." + give[j] + " from " + name.get(j)+"\n");
+                    Log.e("Tag", name.get(i) + " will receive Rs." + give[j] + " from " + name.get(j)+"\n");
 
                     rec[i] = rec[i] - give[j];
                     give[j] = 0.0;
                     continue;
                 }
                 if (rec[i] < give[j]) {
-                    s=("\n"+name.get(i) + " will receive Rs. " + rec[i] + " from " + name.get(j)+"\n");
+//                   p= Math.round(rec[i]*100.0)*100;
+                    s=("\n"+name.get(i) + " will receive Rs. " + df.format(rec[i]) + " from " + name.get(j)+"\n");
                     concat= String.format("%s%s   ", concat, s);
                     Log.e("Tag1", name.get(i) + " will receive Rs. " + rec[i] + " from " + name.get(j));
                     give[j] = give[j] - rec[i];
@@ -97,7 +108,8 @@ public class Third_Slide extends AppCompatActivity {
                     break;
                 }
                 if (give[j] == rec[i]) {
-                    s=("\n"+name.get(i) + " will receive Rs." + rec[i] + " from " + name.get(j)+"\n");
+//                   p=Math.round(rec[i]*100.0)/100.0;
+                    s=("\n"+name.get(i) + " will receive Rs." + df.format(rec[i]) + " from " + name.get(j)+"\n");
                     concat= String.format("%s%s   ", concat, s);
                    Log.e("Tag2", name.get(i) + "will receive Rs." + rec[i] + " from " + name.get(j));
                     rec[i] = 0.0;

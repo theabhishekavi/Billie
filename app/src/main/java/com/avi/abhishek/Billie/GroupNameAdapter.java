@@ -57,7 +57,13 @@ public class GroupNameAdapter extends BaseAdapter {
         textname=inflatedView.findViewById(R.id.groupname);
         btnOpen=inflatedView.findViewById(R.id.btnOpen);
         btnDelete=inflatedView.findViewById(R.id.btnDelete);
-        username=firebaseUser.getUid();
+       username=firebaseUser.getUid();
+//        username = firebaseUser.getPhoneNumber();
+//        if(firebaseUser.getPhoneNumber()==""){
+//            username=firebaseUser.getEmail();
+//            username=username.replace(".",",");
+//        }
+
 
         textname.setText(CurrentName);
         notifyDataSetChanged();
@@ -79,6 +85,7 @@ public class GroupNameAdapter extends BaseAdapter {
                 dbref.child("Bill Details "+username + " "+CurrentName).removeValue();
             }
         });
+
 
 
 
