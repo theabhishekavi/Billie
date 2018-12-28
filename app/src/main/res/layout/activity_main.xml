@@ -16,36 +16,6 @@
         android:textColor="@color/colorPrimaryDark"
         android:textSize="45dp" />
 
-    <!--android:layout_alignParentTop="true"-->
-    <!--android:layout_centerHorizontal="true"-->
-    <!--android:layout_marginTop="171dp"-->
-
-    <!--<Button-->
-        <!--android:id="@+id/btnsignout"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="36dp"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_marginEnd="15dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:text="SIGN OUT"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_marginRight="15dp" />-->
-    <!--android:background="@color/cardview_light_background"-->
-
-
-    <!--<Button-->
-        <!--android:id="@+id/btnLocation"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_marginTop="75dp"-->
-        <!--android:layout_marginEnd="-103dp"-->
-        <!--android:layout_marginRight="-103dp"-->
-        <!--android:layout_toStartOf="@+id/btnsignout"-->
-        <!--android:layout_toLeftOf="@+id/btnsignout"-->
-        <!--android:text="Realtime Location"-->
-        <!--android:textSize="30dp" />-->
 
 
 </RelativeLayout>

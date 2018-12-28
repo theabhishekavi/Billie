@@ -39,12 +39,6 @@ public class First_Slide extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.first_slide);
         username=firebaseUser.getUid();
-//        username = firebaseUser.getPhoneNumber();
-//        if(firebaseUser.getPhoneNumber()==""){
-//            username=firebaseUser.getEmail().trim();
-//            username=username.replace(".",",");
-//            Log.e("kutta",username+"");
-//        }
 
         name = findViewById(R.id.etTripName);
         btnDone=findViewById(R.id.btnDone);
@@ -60,8 +54,6 @@ public class First_Slide extends AppCompatActivity {
                 String s=name.getText().toString();
                 dbref.child(username+" Group_Names").child(name.getText().toString()).setValue(name.getText().toString());
                 name.setText("");
-
-//                arrayname.add(s);
                 groupNameAdapter.notifyDataSetChanged();
                 }
         });

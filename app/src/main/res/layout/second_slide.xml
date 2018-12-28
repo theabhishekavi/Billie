@@ -25,7 +25,7 @@
             android:id="@+id/etName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="Enter the name of Traveller!              "
+            android:hint="Enter the name of Payee!                  "
             android:imeOptions="actionNext"/>
 
         <EditText

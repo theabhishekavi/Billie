@@ -17,7 +17,6 @@ public class Third_Slide extends AppCompatActivity {
     ArrayList<Integer> money;
     int size;
     int x;
-//    double p=0.0,q=0.0;
     DecimalFormat df=new DecimalFormat("###.##");
 
     @Override
@@ -72,11 +71,11 @@ public class Third_Slide extends AppCompatActivity {
         for (i = 0; i < size; i++) {
             if (money.get(i) > equal) {
                 rec[i] = money.get(i) - equal;
-//                rec[i]=Math.round(rec[i]*100.0)*100;
+
                 give[i] = 0.0;
             } else {
                 give[i] = equal - money.get(i);
-//                give[i]=Math.round(give[i]*100.0)/100.0;
+
                 rec[i] = 0.0;
             }
         }
@@ -89,7 +88,7 @@ public class Third_Slide extends AppCompatActivity {
                     continue;
                 }
                 if (give[j] < rec[i]) {
-//                  p=df.format(give[j]);
+
                     s=("\n"+name.get(i) + " will receive Rs." + df.format(give[j]) + " from " + name.get(j)+"\n");
                     concat= String.format("%s%s   ", concat, s);
                     Log.e("Tag", name.get(i) + " will receive Rs." + give[j] + " from " + name.get(j)+"\n");
@@ -99,7 +98,6 @@ public class Third_Slide extends AppCompatActivity {
                     continue;
                 }
                 if (rec[i] < give[j]) {
-//                   p= Math.round(rec[i]*100.0)*100;
                     s=("\n"+name.get(i) + " will receive Rs. " + df.format(rec[i]) + " from " + name.get(j)+"\n");
                     concat= String.format("%s%s   ", concat, s);
                     Log.e("Tag1", name.get(i) + " will receive Rs. " + rec[i] + " from " + name.get(j));
@@ -108,7 +106,6 @@ public class Third_Slide extends AppCompatActivity {
                     break;
                 }
                 if (give[j] == rec[i]) {
-//                   p=Math.round(rec[i]*100.0)/100.0;
                     s=("\n"+name.get(i) + " will receive Rs." + df.format(rec[i]) + " from " + name.get(j)+"\n");
                     concat= String.format("%s%s   ", concat, s);
                    Log.e("Tag2", name.get(i) + "will receive Rs." + rec[i] + " from " + name.get(j));

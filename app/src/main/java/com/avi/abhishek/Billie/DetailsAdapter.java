@@ -68,7 +68,7 @@ public class DetailsAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 details.remove(position);
-                notifyDataSetChanged();
+              notifyDataSetChanged();
                dbref.child("Bill Details "+username + " "+Global_Class.billTripname+"").child(""+currentDetail.getName()+""+currentDetail.getMoney()).removeValue();
             }
         });

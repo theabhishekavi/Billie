@@ -24,7 +24,7 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     Button btnBillSplit;
-//    btnsignout,btnLocation;
+
     FirebaseUser firebaseUser;
     private static final int RC_SIGN_IN=1000;
     @Override
@@ -35,9 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         btnBillSplit = findViewById(R.id.btnBillSplit);
 
-//        btnsignout=findViewById(R.id.btnsignout);
-//
-//        btnLocation=findViewById(R.id.btnLocation);
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
         if (firebaseUser != null) {
@@ -113,32 +110,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-//        btnsignout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (v.getId() == R.id.btnsignout) {
-//                    AuthUI.getInstance()
-//                            .signOut(MainActivity.this)
-//                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-//                                @Override
-//                                public void onComplete(@NonNull Task<Void> task) {
-//                                    Toast.makeText(MainActivity.this,"User signed out",Toast.LENGTH_SHORT).show();
-////                                    Resign it pass startActivityForResult
-//                                    finish();
-//                                }
-//                            });
-//                }
-//            }
-//        });
-
-//        btnLocation.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent it= new Intent(MainActivity.this,Location_View.class);
-//                startActivity(it);
-//            }
-//        });
-
     }
 
     @Override
@@ -163,10 +134,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         });
                 return true;
-            case R.id.menu_new_features:
-                Intent it= new Intent(MainActivity.this,Location_View.class);
-                startActivity(it);
-                return true;
+
             case R.id.menu_about:
                 Intent i=new Intent(MainActivity.this,About.class);
                 startActivity(i);

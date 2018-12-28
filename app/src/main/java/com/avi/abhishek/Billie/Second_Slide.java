@@ -64,6 +64,30 @@ public class Second_Slide extends AppCompatActivity {
         listView.setAdapter(detailsAdapter);
 
       final Button btnAdd = findViewById(R.id.btnAdd);
+//      btnAdd.setEnabled(false);
+
+      etName.addTextChangedListener(new TextWatcher() {
+          @Override
+          public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+          }
+
+          @Override
+          public void onTextChanged(CharSequence s, int start, int before, int count) {
+              if (s.toString().trim().length()==0){
+                  btnAdd.setEnabled(false);
+              }
+              else {
+                  btnAdd.setEnabled(true);
+              }
+
+          }
+
+          @Override
+          public void afterTextChanged(Editable s) {
+
+          }
+      });
 
       etAmount.addTextChangedListener(new TextWatcher() {
           @Override
@@ -73,8 +97,21 @@ public class Second_Slide extends AppCompatActivity {
 
           @Override
           public void onTextChanged(CharSequence s, int start, int before, int count) {
+              if (s.toString().trim().length()==0){
+                  btnAdd.setEnabled(false);
+              }
+              else {
+                  btnAdd.setEnabled(true);
+              }
+
+
               String st=etAmount.getText().toString().trim();
+
+//              if(st==""){
+//                  btnAdd.setEnabled(false);
+//              }
               for (int i=0;i<st.length();i++){
+
                   int x=(int)st.charAt(i);
                   if(x>=48&&x<=57){
                       btnAdd.setEnabled(true);
@@ -104,7 +141,8 @@ public class Second_Slide extends AppCompatActivity {
 
                   detail = new Details(dbname,Integer.valueOf(dbamount));
 
-                  dbref.child("Bill Details "+Username + " "+Global_Class.billTripname).child(""+etName.getText().toString()+""+etAmount.getText().toString()).push()
+                  dbref.child("Bill Details "+Username + " "+Global_Class.billTripname).child(""+etName.getText().toString()+""+etAmount.getText().toString())
+                               .push()
                               .setValue(detail);
 
                               }
@@ -113,69 +151,73 @@ public class Second_Slide extends AppCompatActivity {
 
 
 
-
-        dbref.child("Bill Details "+Username + " "+Global_Class.billTripname).child(""+etName.getText().toString()+""+etAmount.getText().toString())
-                .addChildEventListener(new ChildEventListener() {
-              @Override
-              public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                  for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                       data = new Details(ds.child("name").getValue(String.class), ds.child("money").getValue(Integer.class));}
+//          if(btnAdd.isClickable()) {}
+              dbref.child("Bill Details " + Username + " " + Global_Class.billTripname).child("" + etName.getText().toString() + "" + etAmount.getText().toString())
+                      .addChildEventListener(new ChildEventListener() {
+                          @Override
+                          public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                              for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                  data = new Details(ds.child("a").getValue(String.class), ds.child("b").getValue(Integer.class));
+                              }
 //                  Details data = dataSnapshot.getValue(Details.class);
-                      details.add(data);
-                     detailsAdapter.notifyDataSetChanged();
-                      String name = data.getName();
-                      int i = data.getMoney();
-                      x.add(name);
-                      y.add(i);
-                      etName.setText("");
-                      etAmount.setText("");
+                              details.add(data);
+                              detailsAdapter.notifyDataSetChanged();
+                              String name = data.getName();
+                              int i = data.getMoney();
+                              x.add(name);
+                              y.add(i);
+                              etName.setText("");
+                              etAmount.setText("");
 
 
-              }
+                          }
 
-              @Override
-              public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                  for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                       data = new Details(ds.child("name").getValue(String.class),ds.child("money").getValue(Integer.class));}
+                          @Override
+                          public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                              for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                  data = new Details(ds.child("a").getValue(String.class), ds.child("b").getValue(Integer.class));
+                              }
 //                  Details data = dataSnapshot.getValue(Details.class);
-                      details.add(data);
-                    detailsAdapter.notifyDataSetChanged();
-                      String name = data.getName();
-                      int i = data.getMoney();
-                      x.add(name);
-                      y.add(i);
-                      etName.setText("");
-                      etAmount.setText("");
+                              details.add(data);
+                              detailsAdapter.notifyDataSetChanged();
+                              String name = data.getName();
+                              int i = data.getMoney();
+                              x.add(name);
+                              y.add(i);
+                              etName.setText("");
+                              etAmount.setText("");
 
 
-              }
+                          }
 
-              @Override
-              public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-                  for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                          @Override
+                          public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                              for (DataSnapshot ds : dataSnapshot.getChildren()) {
 //                   data=dataSnapshot.getValue(Details.class);
-                      data = new Details(ds.child("name").getValue(String.class), ds.child("money").getValue(Integer.class));}
-                  String name=data.getName();
-                  int i=data.getMoney();
+                                  data = new Details(ds.child("a").getValue(String.class), ds.child("b").getValue(Integer.class));
+                              }
+                              String name = data.getName();
+                              int i = data.getMoney();
 
-                  x.remove(name);
-                  y.remove(Integer.valueOf(i));
-
-
-              }
-
-              @Override
-              public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                              x.remove(name);
+                              y.remove(Integer.valueOf(i));
 
 
-              }
+                          }
 
-              @Override
-              public void onCancelled(@NonNull DatabaseError databaseError) {
+                          @Override
+                          public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-              }
 
-          });
+                          }
+
+                          @Override
+                          public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                          }
+
+                      });
+
 
 
         Button btnCalculate =findViewById(R.id.btnCalculate);

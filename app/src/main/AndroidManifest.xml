@@ -23,9 +23,9 @@
         <activity android:name="com.avi.abhishek.Billie.Second_Slide" />
         <activity android:name="com.avi.abhishek.Billie.Third_Slide" />
         <!--<activity android:name=".Trip_Slide" />-->
-        <activity android:name="com.avi.abhishek.Billie.Location_View" />
+        <!--<activity android:name="com.avi.abhishek.Billie.Location_View" />-->
 
-        <service android:name="com.avi.abhishek.Billie.TrackingService" />
+        <!--<service android:name="com.avi.abhishek.Billie.TrackingService" />-->
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -38,9 +38,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name="com.avi.abhishek.Billie.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+        <!--<activity-->
+            <!--android:name="com.avi.abhishek.Billie.MapsActivity"-->
+            <!--android:label="@string/title_activity_maps"></activity>-->
         <activity android:name=".About" />
     </application>
 
